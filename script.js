@@ -1,37 +1,54 @@
-const taskCount = 25
+const grid = document.getElementById("grid")
 
-const tasksDiv = document.getElementById("tasks")
+const taskCount = 25
 
 for(let i=0;i<taskCount;i++){
 
-    const div = document.createElement("div")
-    div.className="task"
+    const task = document.createElement("div")
+    task.className = "task"
 
     const input = document.createElement("input")
-    input.placeholder="目標"
+    input.placeholder = "目標"
+
+    const savedText = localStorage.getItem("text"+i)
+    if(savedText) input.value = savedText
+
+    input.oninput = () =>{
+        localStorage.setItem("text"+i,input.value)
+    }
 
     const circle = document.createElement("div")
-    circle.className="circle"
+    circle.className = "circle"
 
     const saved = localStorage.getItem("circle"+i)
     if(saved=="1") circle.classList.add("done")
 
-    circle.onclick=()=>{
+    circle.onclick = () =>{
+
         circle.classList.toggle("done")
 
-        if(circle.classList.contains("done"))
+        if(circle.classList.contains("done")){
             localStorage.setItem("circle"+i,"1")
-        else
+        }else{
             localStorage.setItem("circle"+i,"0")
+        }
+
     }
 
-    div.appendChild(input)
-    div.appendChild(circle)
+    task.appendChild(input)
+    task.appendChild(circle)
 
-    tasksDiv.appendChild(div)
+    grid.appendChild(task)
+
 }
 
 function clearAll(){
-    localStorage.clear()
-    location.reload()
+
+    if(confirm("全部リセットしますか？")){
+
+        localStorage.clear()
+        location.reload()
+
+    }
+
 }
