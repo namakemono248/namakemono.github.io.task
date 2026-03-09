@@ -1,26 +1,35 @@
 body{
-  font-family:sans-serif;
-  text-align:center;
+    font-family:sans-serif;
+    text-align:center;
+}
+
+#grid{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap:30px;
+    width:800px;
+    margin:50px auto;
 }
 
 .task{
-  margin:20px;
+    text-align:center;
 }
 
 input{
-  width:200px;
-  padding:5px;
+    width:120px;
+    padding:5px;
+    margin-bottom:10px;
 }
 
 .circle{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  border:3px dotted black;
-  margin:10px auto;
-  cursor:pointer;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    border:4px dotted black;
+    margin:auto;
+    cursor:pointer;
 }
 
 .done{
-  background:red;
+    background:red;
 }
